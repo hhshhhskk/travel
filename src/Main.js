@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { getTourism } from "./api";
 
 const Wrapper = styled.div`
   background: skyblue;
@@ -14,7 +15,7 @@ const Banner = styled.div`
 `;
 
 function Main() {
-
+    getTourism();
   return (
     <Wrapper>
           <Banner>
