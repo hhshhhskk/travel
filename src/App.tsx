@@ -1,7 +1,7 @@
 import Header from './components/Header';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Main from './Main';
 import Chat from './Chat';
+import Main from './Main';
 
 function App() {
 
