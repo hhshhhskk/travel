@@ -1,12 +1,6 @@
 import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import styled from "styled-components";
-
-const BASE_PATH = "	http://apis.data.go.kr/B551011/KorService";
-
-const API_KEY = "9%2Bmjut77JeCgLpJnD6eoWV7TctBLzXUqwzvjS5DZS4cXBdUNbCP7uYZFMMFwhFHAmVkgOYxFi05sxTE6zqSqKA%3D%3D";
-
-const TYPE = "_type=json";
-
 
 
 const Wrapper = styled.div`
@@ -76,18 +70,8 @@ function Main() {
     const areaCodeName = ["서울", "인천", "대전", "대구", "광주", "부산", "울산", "세종", "경기도", "강원도"];
     const [areaCodeNum, setAreaCodeNum] = useState(1);
     const [data, setData] = useState<Idata | null>(null);
-
     useEffect(() => {
-        (async () => {
-            const response = await fetch(
-                `${BASE_PATH}/areaBasedList?numOfRows=10&pageNo=3&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${API_KEY}&${TYPE}&listYN=Y&arrange=A&contentTypeId=12&areaCode=${areaCodeNum}`
-            );
 
-            const json = await response.json();
-            console.log(json.response.body.items.item);
-
-            setData(json.response.body.items.item);
-        })();
     }, []);
 
     const areaClick = (idx: number) => {
