@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import styled from "styled-components";
+import { areaTrip } from "./api/api";
 
 
 const Wrapper = styled.div`
@@ -69,11 +70,11 @@ interface Idata {
 function Main() {
     const areaCodeName = ["서울", "인천", "대전", "대구", "광주", "부산", "울산", "세종", "경기도", "강원도"];
     const [areaCodeNum, setAreaCodeNum] = useState(1);
-    const [data, setData] = useState<Idata | null>(null);
-    useEffect(() => {
 
-    }, []);
-
+    const { isLoading, data: areaTripData } = useQuery(["areaTrip"], () => {
+        areaTrip(areaCodeNum)
+    })
+    console.log(isLoading, areaTripData);
     const areaClick = (idx: number) => {
 
         setAreaCodeNum(idx + 1);
@@ -93,8 +94,8 @@ function Main() {
                 </Category>
                 <TourItems>
                     {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((i: number) => (
-                        <TourItem>
-                            <TourImg src={data?.[i].firstimage} />
+                        <TourItem key={i}>
+                            <TourImg />
                         </TourItem>
                     ))}
                 </TourItems>
