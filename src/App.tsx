@@ -1,6 +1,6 @@
 import Header from './components/Header';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Chat from './Chat';
+import Chat from './pages/Chat';
 import Main from './Main';
 
 function App() {
