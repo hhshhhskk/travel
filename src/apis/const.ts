@@ -4,4 +4,4 @@ export const API_KEY = "9%2Bmjut77JeCgLpJnD6eoWV7TctBLzXUqwzvjS5DZS4cXBdUNbCP7uY
 
 export const TYPE = "_type=json";
 
-export const DATA_NUMBER = "25";
+export const DATA_NUMBER = "12";

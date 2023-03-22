@@ -9,6 +9,7 @@ const Nav = styled.div`
   top: 0;
   font-size: 44px;
   padding: 20px 60px;
+  background-color: white;
 `;
 
 const Col = styled.div`
@@ -36,24 +37,24 @@ const Item = styled.li`
 `;
 function Header() {
 
-    return (
-        <Nav>
-            <Col>
-                <Items>
-                    <Item>
-                        <Link to="/">
-                            Home
-                        </Link>
-                    </Item>
-                    <Item>
-                        <Link to="/AIchat">
-                            AI
-                        </Link>
-                    </Item>
-                </Items>
-            </Col>
-        </Nav>
-    );
+  return (
+    <Nav>
+      <Col>
+        <Items>
+          <Item>
+            <Link to="/">
+              Home
+            </Link>
+          </Item>
+          <Item>
+            <Link to="/AIchat">
+              AI
+            </Link>
+          </Item>
+        </Items>
+      </Col>
+    </Nav>
+  );
 }
 
 export default Header;
