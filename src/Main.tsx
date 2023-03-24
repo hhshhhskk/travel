@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
-import { BASE_PATH, API_KEY, TYPE, DATA_NUMBER } from "./apis/const";
-
+import AreaTour from "./components/AreaTour";
 
 const Wrapper = styled.div`
   background: skyblue;
@@ -38,35 +37,6 @@ const CategoryItems = styled.div`
   }
 `;
 
-const TourItems = styled.div`
-    display: flex;
-    flex-wrap: wrap; 
-    justify-content: space-evenly;
-    margin-top: 8vh;
-    gap: 10px;
-`;
-
-const TourItem = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
-
-const TourImg = styled.img`
-    width: 35vh;
-    height: 200px;
-`;
-
-const TourName = styled.div`
-    width: 35vh;
-    height: 30px;
-    font-size: 20px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    text-align: center;
-    color: black;
-    background-color: gray;
-`;
 
 const TourPageDiv = styled.div`
     background-color: white;
@@ -106,48 +76,13 @@ const TourPageUpDownBtn = styled.div`
     color: blue;
   }
 `;
-interface Idata {
-    // [key: number]: any,
-    addr1: string,
-    addr2: string,
-    areacode: number,
-    booktour: string,
-    cat1: string,
-    cat2: string,
-    cat3: string,
-    contentid: number,
-    contenttypeid: number,
-    createdtime: number,
-    firstimage: string,
-    firstimage2: string,
-    mapx: number,
-    mapy: number,
-    mlevel: number,
-    modifiedtime: number,
-    readcount: number,
-    sigungucode: number,
-    tel: string,
-    title: string,
-    zipcode: number
-}
 
 function Main() {
     const areaCodeName = ["서울", "인천", "대전", "대구", "광주", "부산", "울산", "세종", "경기도", "강원도"];
     const [areaCodeNum, setAreaCodeNum] = useState<number>(1);
-    const [areaData, setAreaData] = useState<Idata[]>();
-    const [totalData, setTotalData] = useState(0);
+    // const [totalData, setTotalData] = useState(0);
     const [pageNo, setPageNo] = useState<number>(1);
-    useEffect(() => {
-        (async () => {
-            const response = await fetch(
-                `${BASE_PATH}/areaBasedList?numOfRows=${DATA_NUMBER}&pageNo=${pageNo}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${API_KEY}&${TYPE}&listYN=Y&arrange=A&contentTypeId=12&areaCode=${areaCodeNum}`
-            );
 
-            const json = await response.json();
-            setTotalData(json.response.body.totalCount);
-            setAreaData(json.response.body.items.item)
-        })();
-    }, [areaCodeNum, pageNo]);
     const areaClick = (idx: number) => {
 
         setAreaCodeNum(idx + 1);
@@ -162,7 +97,7 @@ function Main() {
     const pageClick = (idx: number) => {
         setPageNo(idx + pageNo);
     }
-    console.log(pageNo);
+    // console.log(pageNo);
     return (
         <Wrapper>
             <Space>
@@ -176,19 +111,7 @@ function Main() {
                         </CategoryItems>
                     ))}
                 </Category>
-                <TourItems>
-                    {areaData?.map((data, idx) => (
-                        <TourItem key={data.contentid}>
-                            <TourImg src={areaData?.[idx].firstimage
-                                ? areaData?.[idx].firstimage
-                                : "/no_img.png"
-                            } />
-                            <TourName>
-                                {areaData?.[idx].title}
-                            </TourName>
-                        </TourItem>
-                    ))}
-                </TourItems>
+                <AreaTour areaCodeNum={areaCodeNum} pageNo={pageNo} />
                 <TourPageDiv>
                     <TourPageUpDownBtn
                         onClick={downClick}

@@ -1,11 +1,10 @@
-import { BASE_PATH, API_KEY, TYPE } from "./const";
+import { BASE_PATH, API_KEY, TYPE, DATA_NUMBER } from "./const";
 
-export function areaTrip(areaCodeNum: number) {
-    return fetch(`${BASE_PATH}/areaBasedList?numOfRows=10&pageNo=3&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${API_KEY}&${TYPE}&listYN=Y&arrange=A&contentTypeId=12&areaCode=${areaCodeNum}`)
+export function areaTrip(areaCodeNum: number, pageNo: number) {
+    return fetch(`${BASE_PATH}/areaBasedList?numOfRows=${DATA_NUMBER}&pageNo=${pageNo}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${API_KEY}&${TYPE}&listYN=Y&arrange=A&contentTypeId=12&areaCode=${areaCodeNum}`)
         .then(
-            (response) => {
-                response.json();
-        }
+            (response) => response.json()
+    
     )
 }
 
