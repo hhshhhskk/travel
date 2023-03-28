@@ -1,4 +1,4 @@
-export const BASE_PATH = "	http://apis.data.go.kr/B551011/KorService";
+export const BASE_PATH = "http://apis.data.go.kr/B551011/KorService1";
 
 export const API_KEY = "9%2Bmjut77JeCgLpJnD6eoWV7TctBLzXUqwzvjS5DZS4cXBdUNbCP7uYZFMMFwhFHAmVkgOYxFi05sxTE6zqSqKA%3D%3D";
 

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useQuery } from "react-query";
 import { areaTrip } from "../apis/api";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const TourItems = styled.div`
@@ -15,6 +16,9 @@ const TourItems = styled.div`
 const TourItem = styled.div`
     display: flex;
     flex-direction: column;
+    border-width: 1px;
+    border: solid;
+    border-color: black;
 `;
 
 const TourImg = styled.img`
@@ -30,8 +34,8 @@ const TourName = styled.div`
     text-overflow: ellipsis;
     white-space: nowrap;
     text-align: center;
-    color: black;
-    background-color: gray;
+    color: white;
+    background-color: skyblue;
 `;
 
 interface Idata {
@@ -59,37 +63,45 @@ interface Idata {
     zipcode: number
 }
 
-interface num {
+interface Inum {
     areaCodeNum: number,
     pageNo: number
 }
 
-function AreaTour(props: num) {
+interface Icont {
+    contentId: string;
+}
+
+function AreaTour(props: Inum) {
     const { isLoading, data: areaData, refetch } = useQuery<Idata[]>(
-        ["info"],
+        ["areaData"],
         async () => {
             const areadata = await areaTrip(props.areaCodeNum, props.pageNo)
-            console.log("쿼리요청됨")
+            // console.log("쿼리요청됨")
             return areadata.response.body.items.item;
         },
-        {
-        }
     );
-
     useEffect(() => {
         refetch()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.areaCodeNum, props.pageNo]);
+    const navigate = useNavigate();
+
+    const onClicked = async (data: Icont) => {
+        navigate(`/Detail?id=${data}`);
+    };
     return (
         <TourItems>
             {isLoading
                 ? <div>loading...</div>
                 : areaData?.map((data: any, idx: any) => (
                     <TourItem key={data.contentid}>
-                        <TourImg src={areaData?.[idx].firstimage
-                            ? areaData?.[idx].firstimage
-                            : "/no_img.png"
-                        } />
+                        <TourImg
+                            onClick={() => onClicked(data.contentid)}
+                            src={areaData?.[idx].firstimage
+                                ? areaData?.[idx].firstimage
+                                : "/no_img.png"
+                            } />
                         <TourName>
                             {areaData?.[idx].title}
                         </TourName>

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import AreaTour from "./components/AreaTour";
 
 const Wrapper = styled.div`
-  background: skyblue;
+  background: white;
 `;
 
 const Space = styled.div`
@@ -26,7 +26,7 @@ const CategoryItems = styled.div`
     border-color: black;
     width: 100px;
     height: 60px;
-    color: white;
+    color: black;
     font-size: 2.1vw;
     display : flex;
     justify-content : center;

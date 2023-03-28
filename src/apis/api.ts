@@ -1,7 +1,15 @@
 import { BASE_PATH, API_KEY, TYPE, DATA_NUMBER } from "./const";
 
 export function areaTrip(areaCodeNum: number, pageNo: number) {
-    return fetch(`${BASE_PATH}/areaBasedList?numOfRows=${DATA_NUMBER}&pageNo=${pageNo}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=${API_KEY}&${TYPE}&listYN=Y&arrange=A&contentTypeId=12&areaCode=${areaCodeNum}`)
+    return fetch(`${BASE_PATH}/areaBasedList1?serviceKey=${API_KEY}&${TYPE}&pageNo=${pageNo}&numOfRows=${DATA_NUMBER}&MobileApp=AppTest&MobileOS=ETC&arrange=A&areaCode=${areaCodeNum}`)
+        .then(
+            (response) => response.json()
+    
+    )
+}
+
+export function areaTripDetail(contentId: number) {
+    return fetch(`${BASE_PATH}/detailCommon1?${TYPE}&serviceKey=${API_KEY}&MobileOS=ETC&MobileApp=AppTest&contentId=${contentId}&defaultYN=Y&firstImageYN=Y&overviewYN=Y`)
         .then(
             (response) => response.json()
     
