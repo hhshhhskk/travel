@@ -19,6 +19,7 @@ const TourItem = styled.div`
     border-width: 1px;
     border: solid;
     border-color: black;
+    cursor: pointer;
 `;
 
 const TourImg = styled.img`
@@ -30,6 +31,7 @@ const TourName = styled.div`
     width: 35vh;
     height: 30px;
     font-size: 20px;
+    padding-top: 5px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
