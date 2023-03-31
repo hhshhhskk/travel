@@ -15,6 +15,10 @@ const Wrapper = styled.div`
 `;
 
 const Space = styled.div`
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 6px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  padding: 30px;
   width: 80%;
   height: 80%;
   margin-top: 10vh;
@@ -22,47 +26,40 @@ const Space = styled.div`
   flex-direction: column;
   background-size: cover;
   align-items: center;
-  border-width: 1px;
-  border: solid;
-  border-color: black;
 `;
 
 const DetailName = styled.div`
-    background-color: grey;
-    margin-top: 10vh;
+    margin-top: 5vh;
+    margin-bottom: 20px;
     width: 90%;
     font-size: 30px;
-
 `;
 const DetailDiv = styled.div`
-    background-color: skyblue;
     width: 80%;
     padding: 10px;
     display: flex;
     justify-content: space-around;
-    border-width: 1px;
-    border: solid;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 5px;
+    background-color: rgb(255, 255, 255);
     border-radius: 50px;
-    border-color: black;
 `
 
 const DetailOption = styled.div`
-    border-width: 1px;
-    border: solid;
-    border-radius: 50px;
-    border-color: black;
-    width: 200px;
-    height: 60px;
+    width: 100%;
+    height: 4vh;
     display: flex;
     align-items: center;
     justify-content: center;
     color: black;
     font-size: 2.1vw;
+    cursor: pointer;
 `
-const Circle = styled(motion.div)`
-    background-color: #00a5ff;
-    height: 20px;
-    width: 20px;
+const Circle = styled(motion.div)` 
+    position: absolute;
+    border-radius: 50px;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 15px;
+    width: 20%;
+    height: 5%;
 `;
 
 interface Idata {
@@ -90,13 +87,8 @@ function AreaTourDetail() {
     );
     const detailOtion = ["공통정보", "소개정보", "이미지 더보기"]
     console.log(isLoading, detailData, "디테일데이터");
-    const [clicked, setClicked] = useState(true);
     const [data, setData] = useState("공통정보");
-    const clickedOtion = (option: any) => {
-        setClicked((prev) => !prev)
-        setData(option);
-        console.log(clicked);
-    }
+
     return (
         <Wrapper>
             <Space>
@@ -105,11 +97,11 @@ function AreaTourDetail() {
                     {detailOtion.map((option) => (
                         <DetailOption
                             key={option}
-                            onClick={() => clickedOtion(option)}
+                            onClick={() => setData(option)}
                         >
                             {option}
                             {data === option
-                                ? <Circle layout />
+                                ? <Circle layoutId="underline" />
                                 : null
                             }
                         </DetailOption>

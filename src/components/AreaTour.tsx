@@ -11,6 +11,7 @@ const TourItems = styled.div`
     justify-content: space-evenly;
     margin-top: 8vh;
     gap: 10px;
+    font-family: "kcc";
 `;
 
 const TourItem = styled.div`

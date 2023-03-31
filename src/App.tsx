@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Chat from './pages/Chat';
 import Main from './Main';
 import AreaTourDetail from './pages/AreaTourDetail';
-
+import "./App.css";
 function App() {
 
   return (

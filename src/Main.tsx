@@ -4,6 +4,7 @@ import AreaTour from "./components/AreaTour";
 
 const Wrapper = styled.div`
   background: white;
+  font-family: "kcc";
 `;
 
 const Space = styled.div`
@@ -21,20 +22,20 @@ const Category = styled.div`
 `;
 
 const CategoryItems = styled.div`
-    border-width: 1px;
-    border: solid;
-    border-color: black;
+    box-shadow: rgba(0, 0, 0, 1) 0px 0px 5px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50px;
     width: 100px;
     height: 60px;
-    color: black;
+    color: ${(props) => props.className === props.color ? "red" : "black"};
     font-size: 2.1vw;
     display : flex;
     justify-content : center;
     align-items : center;
     cursor: pointer;
-    &:hover {
+    :hover {
     color: blue;
-  }
+  };
 `;
 
 
@@ -79,12 +80,13 @@ const TourPageUpDownBtn = styled.div`
 
 function Main() {
     const areaCodeName = ["서울", "인천", "대전", "대구", "광주", "부산", "울산", "세종", "경기도", "강원도"];
+    const [clickedName, setClickedName] = useState("서울");
     const [areaCodeNum, setAreaCodeNum] = useState<number>(1);
     // const [totalData, setTotalData] = useState(0);
     const [pageNo, setPageNo] = useState<number>(1);
 
-    const areaClick = (idx: number) => {
-
+    const areaClick = (areaname: string, idx: number) => {
+        setClickedName(areaname);
         setAreaCodeNum(idx + 1);
         setPageNo(1);
     };
@@ -105,7 +107,9 @@ function Main() {
                     {areaCodeName.map((areaname, idx) => (
                         <CategoryItems
                             key={idx}
-                            onClick={() => areaClick(idx)}
+                            color={clickedName}
+                            className={areaname}
+                            onClick={() => areaClick(areaname, idx)}
                         >
                             {areaname}
                         </CategoryItems>

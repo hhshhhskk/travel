@@ -10,6 +10,7 @@ const Nav = styled.div`
   font-size: 44px;
   padding: 20px 60px;
   background-color: white;
+  font-family: "kcc";
 `;
 
 const Col = styled.div`
