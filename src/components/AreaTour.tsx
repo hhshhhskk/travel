@@ -9,7 +9,7 @@ const TourItems = styled.div`
     display: flex;
     flex-wrap: wrap; 
     justify-content: space-evenly;
-    margin-top: 8vh;
+    margin-top: 7vh;
     gap: 10px;
     font-family: "kcc";
 `;

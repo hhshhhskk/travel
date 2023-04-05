@@ -18,6 +18,7 @@ const Space = styled.div`
 const Category = styled.div`
     display: flex;
     margin-top: 10vh;
+    height: 100px;
     justify-content: space-between;
 `;
 
@@ -25,8 +26,8 @@ const CategoryItems = styled.div`
     box-shadow: rgba(0, 0, 0, 1) 0px 0px 5px;
     background-color: rgb(255, 255, 255);
     border-radius: 50px;
-    width: 100px;
-    height: 60px;
+    width: 7%;
+    height: 90%;
     color: ${(props) => props.className === props.color ? "red" : "black"};
     font-size: 2.1vw;
     display : flex;
@@ -135,6 +136,9 @@ function Main() {
                     >
                         {">"}
                     </TourPageUpDownBtn>
+                </TourPageDiv>
+                <TourPageDiv>
+                    Page {pageNo}
                 </TourPageDiv>
             </Space>
         </Wrapper>

@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "kcc";
 `;
 
 const Space = styled.div`
@@ -50,7 +51,7 @@ const DetailOption = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    color: black;
+    color:rgb(89, 89, 89);
     font-size: 2.1vw;
     cursor: pointer;
 `
@@ -60,6 +61,19 @@ const Circle = styled(motion.div)`
     box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 15px;
     width: 20%;
     height: 5%;
+`;
+
+const Contents = styled.div`
+
+`;
+
+const Content = styled.div`
+
+`;
+
+const ContentImg = styled.img`
+    width: 35vh;
+    height: 200px;
 `;
 
 interface Idata {
@@ -107,6 +121,11 @@ function AreaTourDetail() {
                         </DetailOption>
                     ))}
                 </DetailDiv>
+                <Contents>
+                    <Content>
+                        <ContentImg />
+                    </Content>
+                </Contents>
             </Space>
         </Wrapper>
     );
