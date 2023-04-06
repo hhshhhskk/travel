@@ -13,6 +13,10 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   font-family: "kcc";
+
+  @media (max-width: 450px) {
+    height: 130vh;
+}
 `;
 
 const Space = styled.div`
@@ -34,6 +38,10 @@ const DetailName = styled.div`
     margin-bottom: 20px;
     width: 90%;
     font-size: 30px;
+    @media (max-width: 450px) {
+        font-size: 10px;
+        text-align: center;
+    }
 `;
 const DetailDiv = styled.div`
     width: 80%;
@@ -79,6 +87,11 @@ const Content = styled.div`
 const ContentImg = styled.img`
     width: 40vh;
     height: 30vh;
+
+    @media (max-width: 450px) {
+        width: 30vh;
+        height: 20vh;
+    }
 `;
 
 const ContentAddr = styled.table`
@@ -92,6 +105,17 @@ const ContentAddr = styled.table`
         text-align: center;
         line-height : 10vh;
     }
+
+    @media (max-width: 450px) {
+        width: 300px;
+        height: 20px;
+        font-size: 10px;
+        th, td {
+        border: solid 1px;
+        text-align: center;
+        line-height : normal;
+    }
+    }
 `;
 
 const ContenstInfo = styled.div`
@@ -99,9 +123,13 @@ const ContenstInfo = styled.div`
     border-radius: 20px;
     margin-top: 10px;
     width: 100%;
-    height: 20vh;
+    height: 50vh;
     padding: 20px;
     color: rgb(50, 50, 50);
+
+    @media (max-width: 450px) {
+        font-size: 10px;
+    }
 `;
 interface Idata {
     // [key: number]: any,

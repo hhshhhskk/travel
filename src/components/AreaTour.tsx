@@ -9,9 +9,13 @@ const TourItems = styled.div`
     display: flex;
     flex-wrap: wrap; 
     justify-content: space-evenly;
-    margin-top: 7vh;
+    margin-top: 5vh;
     gap: 10px;
     font-family: "kcc";
+
+    @media (max-width: 450px) {
+        margin-top: 2vh;
+    }
 `;
 
 const TourItem = styled.div`

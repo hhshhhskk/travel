@@ -14,6 +14,11 @@ const Space = styled.div`
   flex-direction: column;
   padding: 60px;
   background-size: cover;
+
+  @media (max-width: 450px) {
+    width: 100%;
+    padding: 10px;
+  }
 `;
 
 const Category = styled.div`
@@ -21,6 +26,10 @@ const Category = styled.div`
     margin-top: 10vh;
     height: 100px;
     justify-content: space-between;
+
+    @media (max-width: 450px) {
+        height: 35px;
+    }
 `;
 
 const CategoryItems = styled.div`
@@ -34,6 +43,12 @@ const CategoryItems = styled.div`
     display : flex;
     justify-content : center;
     align-items : center;
+
+    @media (max-width: 450px) {
+        width: 9%;
+        height: 100%;
+    }
+
     cursor: pointer;
     :hover {
     color: blue;
