@@ -11,6 +11,10 @@ const Nav = styled.div`
   padding: 20px 60px;
   background-color: white;
   font-family: "kcc";
+  @media (max-width: 450px) {
+    font-size: 30px;
+    position: absolute;
+}
 `;
 
 const Col = styled.div`

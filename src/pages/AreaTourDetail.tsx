@@ -123,12 +123,13 @@ const ContenstInfo = styled.div`
     border-radius: 20px;
     margin-top: 10px;
     width: 100%;
-    height: 50vh;
+    height: 20vh;
     padding: 20px;
     color: rgb(50, 50, 50);
 
     @media (max-width: 450px) {
         font-size: 10px;
+        height: 50vh;
     }
 `;
 interface Idata {
