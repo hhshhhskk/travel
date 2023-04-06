@@ -64,20 +64,48 @@ const Circle = styled(motion.div)`
 `;
 
 const Contents = styled.div`
-
+    margin-top: 5vh;
+    width: 90%;
 `;
 
 const Content = styled.div`
-
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
 `;
 
 const ContentImg = styled.img`
-    width: 35vh;
-    height: 200px;
+    width: 40vh;
+    height: 30vh;
 `;
 
+const ContentAddr = styled.table`
+    border: solid 1px;
+    width: 80vh;
+    height: 10vh;
+    color: black;
+    font-size: 2.5vh;
+    th, td {
+        border: solid 1px;
+        text-align: center;
+        line-height : 10vh;
+    }
+`;
+
+const ContenstInfo = styled.div`
+    border: solid 1px rgb(101, 101, 101);
+    border-radius: 20px;
+    margin-top: 10px;
+    width: 100%;
+    height: 20vh;
+    padding: 20px;
+    color: rgb(50, 50, 50);
+`;
 interface Idata {
     // [key: number]: any,
+    addr1: string,
     contentid: number,
     contenttypeid: number,
     title: string,
@@ -86,7 +114,10 @@ interface Idata {
     tel: number,
     telname: any,
     homepage: string,
-    "booktour": "1"
+    booktour: string,
+    firstimage: string,
+    zipcode: number,
+    overview: string,
 }
 
 function AreaTourDetail() {
@@ -100,7 +131,7 @@ function AreaTourDetail() {
         }
     );
     const detailOtion = ["공통정보", "소개정보", "이미지 더보기"]
-    console.log(isLoading, detailData, "디테일데이터");
+    console.log(isLoading, detailData?.[0]);
     const [data, setData] = useState("공통정보");
 
     return (
@@ -121,11 +152,42 @@ function AreaTourDetail() {
                         </DetailOption>
                     ))}
                 </DetailDiv>
-                <Contents>
-                    <Content>
-                        <ContentImg />
-                    </Content>
-                </Contents>
+                {data === "공통정보"
+                    ?
+                    <Contents>
+                        <Content>
+                            <ContentImg
+                                src={detailData?.[0].firstimage
+                                    ? detailData?.[0].firstimage
+                                    : "/no_img.png"
+                                }
+                            />
+                            <ContentAddr>
+                                <thead>
+                                    <tr>
+                                        <th>우편번호</th>
+                                        <th>{detailData?.[0].zipcode}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>주소</td>
+                                        <td>
+                                            {detailData?.[0].addr1}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </ContentAddr>
+                        </Content>
+                        <Content>
+                            <ContenstInfo>
+                                {detailData?.[0].overview}
+                            </ContenstInfo>
+                        </Content>
+                    </Contents>
+                    : null
+
+                }
             </Space>
         </Wrapper>
     );
