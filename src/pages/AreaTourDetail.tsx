@@ -4,19 +4,16 @@ import { areaTripDetail } from "../apis/api";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import AreaTourIntro from "../components/AreaTourIntro";
 
 const Wrapper = styled.div`
   background: white;
   width: 100%;
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: "kcc";
 
-  @media (max-width: 450px) {
-    height: 130vh;
-}
 `;
 
 const Space = styled.div`
@@ -25,12 +22,15 @@ const Space = styled.div`
   border-radius: 10px;
   padding: 30px;
   width: 80%;
-  height: 80%;
-  margin-top: 10vh;
+  min-height: 900px;
+  margin-top: 14vh;
   display: flex;
   flex-direction: column;
   background-size: cover;
   align-items: center;
+  @media (max-width: 450px) {
+    min-height: 500px;
+}
 `;
 
 const DetailName = styled.div`
@@ -69,6 +69,9 @@ const Circle = styled(motion.div)`
     box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 15px;
     width: 20%;
     height: 5%;
+    @media (max-width: 450px) {
+        width: 15%;
+    }
 `;
 
 const Contents = styled.div`
@@ -123,13 +126,14 @@ const ContenstInfo = styled.div`
     border-radius: 20px;
     margin-top: 10px;
     width: 100%;
-    height: 20vh;
+    min-height: 300px;
     padding: 20px;
     color: rgb(50, 50, 50);
-
+    font-size: 1.5em;
+    
     @media (max-width: 450px) {
         font-size: 10px;
-        height: 50vh;
+        min-height: 200px;
     }
 `;
 interface Idata {
@@ -153,14 +157,14 @@ function AreaTourDetail() {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const contentId = Number(searchParams.get("id"));
-    const { isLoading, data: detailData } = useQuery<Idata[]>(
+    const { data: detailData } = useQuery<Idata[]>(
         ["Detail"], async () => {
             const data = await areaTripDetail(contentId);
             return data.response.body.items.item;
         }
     );
     const detailOtion = ["공통정보", "소개정보", "이미지 더보기"]
-    console.log(isLoading, detailData?.[0]);
+    // console.log(isLoading, detailData?.[0]);
     const [data, setData] = useState("공통정보");
 
     return (
@@ -214,7 +218,11 @@ function AreaTourDetail() {
                             </ContenstInfo>
                         </Content>
                     </Contents>
-                    : null
+                    : data === "소개정보"
+                        ? <AreaTourIntro
+                            contenttypeid={detailData?.[0].contenttypeid}
+                            contentId={contentId} />
+                        : null
 
                 }
             </Space>
