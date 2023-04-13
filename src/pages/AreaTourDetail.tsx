@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import AreaTourIntro from "../components/AreaTourIntro";
+import MoreImg from "../components/MoreImg";
 
 const Wrapper = styled.div`
   background: white;
@@ -222,8 +223,9 @@ function AreaTourDetail() {
                         ? <AreaTourIntro
                             contenttypeid={detailData?.[0].contenttypeid}
                             contentId={contentId} />
-                        : null
-
+                        : data === "이미지 더보기"
+                            ? <MoreImg />
+                            : null
                 }
             </Space>
         </Wrapper>
