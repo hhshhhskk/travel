@@ -1,11 +1,11 @@
-// import { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
-// const { Configuration, OpenAIApi } = require("openai");
+const { Configuration, OpenAIApi } = require("openai");
 
-// const configuration = new Configuration({
-//     apiKey: "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",
-// });
-// const openai = new OpenAIApi(configuration);
+const configuration = new Configuration({
+    apiKey: "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",
+});
+const openai = new OpenAIApi(configuration);
 
 const Wrapper = styled.div`
 `;
@@ -30,7 +30,7 @@ const Line = styled.div`
   flex-direction: column;
 `;
 
-const ChatBoxAI = styled.span`
+const ChatBox = styled.span`
   background-color: #eee;
   padding: 5px;
   max-width: 200px;
@@ -79,17 +79,7 @@ function Chat() {
             <Banner>
                 <ChatContent>
                     <Line>
-                        <ChatBoxAI>어디가 궁금하신가요??</ChatBoxAI>
-                    </Line>
-                    <Line>
-                        {/* <ChatBoxMine>{myChat}</ChatBoxMine> */}
-                    </Line>
-                    <Line>
-                        {/* {loading ?
-                            <ChatBoxAI>{aiChat}</ChatBoxAI>
-                            :
-                            <ChatBoxAI>...</ChatBoxAI>
-                        } */}
+                        <ChatBox>어디가 궁금하신가요??</ChatBox>
                     </Line>
                 </ChatContent>
                 {/* <ChatFormBox onSubmit={sendSumit}> */}

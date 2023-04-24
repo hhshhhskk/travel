@@ -19,7 +19,7 @@ const ImgBoxs = styled.div`
     display: flex;
     margin-top: 5vh;
     width: 90%;
-    height: 45vh;
+    height: 50vh;
     justify-content: center;
     align-items: center;
     @media (max-width: 450px) {
@@ -29,8 +29,8 @@ const ImgBoxs = styled.div`
 
 const Img = styled(motion.img)`
     position: absolute;
-    width: 500px;
-    height: 500px;
+    width: 50vh;
+    height: 50vh;
     box-shadow: rgb(0, 0, 0) 0px 0px 10px;
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
@@ -47,7 +47,7 @@ const NextBtn = styled.div`
     border-radius: 10px;
     width: 100px;
     height: 50px;
-    margin-top: 40px;
+    margin-top: 100px;
     text-align: center;
     font-size: 35px;
 
