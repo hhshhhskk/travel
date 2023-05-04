@@ -13,6 +13,7 @@ const Wrapper = styled.div`
     font-family: "kcc";
     justify-content: center;
     align-items: center;
+
 `;
 
 const ImgBoxs = styled.div`

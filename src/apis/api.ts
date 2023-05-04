@@ -1,5 +1,14 @@
 import { BASE_PATH, API_KEY, TYPE, DATA_NUMBER } from "./const";
 
+export function aiChat(question: any) {
+    return fetch(`http://20.232.117.252/GPT?q=${question}`)
+        .then(
+            (response) => response.json()
+    )
+}
+
+
+
 export function areaTrip(areaCodeNum: number, pageNo: number) {
     return fetch(`${BASE_PATH}/areaBasedList1?serviceKey=${API_KEY}&${TYPE}&pageNo=${pageNo}&numOfRows=${DATA_NUMBER}&MobileApp=AppTest&MobileOS=ETC&arrange=A&areaCode=${areaCodeNum}`)
         .then(
