@@ -17,6 +17,10 @@ const Banner = styled.div`
 
 const ChatContent = styled.div`
   margin-bottom: 40vh;
+
+  @media (max-width: 450px) {
+    margin-bottom: 10vh;
+    }
 `;
 
 const Line = styled.div`
@@ -36,6 +40,10 @@ const ChatBox = styled.span`
   font-size: 22px;
   text-align: justify;
   align-items: flex-start;
+
+  @media (max-width: 450px) {
+    font-size: 16px;
+    }
 `;
 
 
@@ -66,10 +74,11 @@ const ChatSendButton = styled.button`
 
 
 function Chat() {
-  const [question, setQuestion] = useState<string>("안녕하세요");
+  const [question, setQuestion] = useState<any>(null);
   const sendSumit = (e: any) => {
     e.preventDefault();
     setQuestion(e.target[0].value)
+    // console.log(question)
   }
 
   return (
@@ -77,8 +86,15 @@ function Chat() {
       <Banner>
         <ChatContent>
           <Line>
-            <ChatBox>{question}</ChatBox>
-            <Answer question={question} />
+            {
+              question === null
+                ? null
+                :
+                <>
+                  <ChatBox>{question}</ChatBox>
+                  <Answer question={question} />
+                </>
+            }
           </Line>
         </ChatContent>
         <ChatFormBox onSubmit={sendSumit}>

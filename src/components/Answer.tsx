@@ -14,23 +14,27 @@ const ChatBox = styled.span`
   font-size: 22px;
   text-align: justify;
   align-items: flex-start;
+  @media (max-width: 450px) {
+    font-size: 16px;
+    }
 `;
 
 interface Iquestion {
     question: string,
 }
 
-function Answer(question: Iquestion) {
+function Answer(props: Iquestion) {
     const { isLoading, data: answerData } = useQuery(
         ["aiChat"],
         async () => {
-            const answer = await aiChat(question);
+            const answer = await aiChat(props.question);
             console.log("쿼리요청됨", answer.message.result.translatedText)
             return answer.message.result.translatedText;
         },
     );
+    console.log(isLoading, answerData)
     return (
-        isLoading ? <ChatBox>{answerData}</ChatBox> : <ChatBox>Ai가 대답 하는중 입니다.</ChatBox>
+        isLoading ? <ChatBox>Ai가 대답 하는중 입니다.</ChatBox> : <ChatBox>{answerData}</ChatBox>
     );
 }
 
