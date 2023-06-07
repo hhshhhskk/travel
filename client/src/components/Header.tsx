@@ -19,17 +19,24 @@ const Nav = styled.div`
 
 const Col = styled.div`
   display: flex;
-  align-items: center;
-`;
-
-
-const Items = styled.ul`
-  display: flex;
+  width: 100%;
   justify-content: space-between;
-  align-items: center;
 `;
 
-const Item = styled.li`
+
+const Items = styled.div`
+  display: flex;
+`;
+
+const Login = styled.div`
+  display: flex;
+  font-size:20px;
+  @media (max-width: 450px) {
+    font-size: 13px;
+}
+`;
+
+const Item = styled.div`
   margin-right: 20px;
   color: black;
   position: relative;
@@ -57,6 +64,11 @@ function Header() {
             </Link>
           </Item>
         </Items>
+        <Login>
+          <Link to="/Login">
+            로그인
+          </Link>
+        </Login>
       </Col>
     </Nav>
   );

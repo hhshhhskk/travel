@@ -4,6 +4,7 @@ import Chat from './pages/Chat';
 import Main from './Main';
 import AreaTourDetail from './pages/AreaTourDetail';
 import "./App.css";
+import Login from './pages/Login';
 function App() {
 
   return (
@@ -11,6 +12,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/AIchat" element={<Chat />}></Route>
+        <Route path="/Login" element={<Login />}></Route>
         <Route path="/Detail" element={<AreaTourDetail />}></Route>
         <Route path="/" element={<Main />}>
         </Route>

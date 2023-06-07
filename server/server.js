@@ -10,7 +10,6 @@ app.get('/', function (req, res) {
 
 app.use("/user", require("./routes/userRouter"));
 
-
 app.listen(8080, () => {
     console.log("server start")
 })
