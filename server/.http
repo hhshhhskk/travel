@@ -1,9 +1,0 @@
-POST http://localhost:8080/user/register
-
-Content-Type: application/json
-
-{
-  "id": "test1",
-  "password": "qwer",
-  "name": "테스트1",
-}
