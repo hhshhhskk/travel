@@ -30,8 +30,8 @@ const Loginform = styled.form`
 const LoginTitle = styled.div`
   font-size: 66px;
   padding: 10%;
-  font-family: "Jua";
   color: skyblue;
+
 `;
 
 const IdBox = styled.input`

@@ -1,5 +1,6 @@
 import { BASE_PATH, API_KEY, TYPE, DATA_NUMBER } from "./const";
 
+// AI
 export function aiChat(question: any) {
     return fetch(`http://20.232.117.252/GPT?q=${question}`)
         .then(
@@ -8,7 +9,7 @@ export function aiChat(question: any) {
 }
 
 
-
+// 여행지 API
 export function areaTrip(areaCodeNum: number, pageNo: number) {
     return fetch(`${BASE_PATH}/areaBasedList1?serviceKey=${API_KEY}&${TYPE}&pageNo=${pageNo}&numOfRows=${DATA_NUMBER}&MobileApp=AppTest&MobileOS=ETC&arrange=A&areaCode=${areaCodeNum}`)
         .then(
@@ -38,4 +39,22 @@ export function MoreImages(contentId: number) {
             (response) => response.json()
     )
 }
-// http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=10&pageNo=3&MobileOS=ETC&MobileApp=AppTest&ServiceKey=9%2Bmjut77JeCgLpJnD6eoWV7TctBLzXUqwzvjS5DZS4cXBdUNbCP7uYZFMMFwhFHAmVkgOYxFi05sxTE6zqSqKA%3D%3D&_type=json&listYN=Y&arrange=A&contentTypeId=12&areaCode=2
+
+// 회원가입 
+export function SignUpApi(name: any, id: any, password: any, passwordcheck: any) {
+    return fetch(`http://localhost:8080/user/signup/insert`,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name,
+                id,
+                password,
+                passwordcheck,
+            }),
+    })
+        .then(
+    )
+}
