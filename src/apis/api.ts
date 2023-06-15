@@ -54,7 +54,9 @@ export function SignUpApi(name: any, id: any, password: any, passwordcheck: any)
                 password,
                 passwordcheck,
             }),
-    })
-        .then(
-    )
+        }).then(async (result) => {
+            const r = await result.json();
+            // console.log(r);
+            alert(r.message);
+    }).catch((error) => console.log(error))
 }
