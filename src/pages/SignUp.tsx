@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { SignUpApi } from "../apis/api";
+import { useDispatch, useSelector } from "react-redux";
+import alertSlice from "../alertSlice";
+import SignUpAlert from "../components/SignUpAlert";
 
 const Wrapper = styled(motion.div)`
   display: flex;
@@ -83,6 +86,11 @@ const CreateButton = styled.button`
 `;
 
 function SignUp() {
+    const dispatch = useDispatch();
+    const alertShow = useSelector((state: any) => {
+        return state.alert.value
+    })
+
     const onSubmitHandler = (e: any) => {
         e.preventDefault();
         const name = e.target.name.value;
@@ -90,44 +98,52 @@ function SignUp() {
         const password = e.target.password.value;
         const passwordcheck = e.target.passwordcheck.value;
         SignUpApi(name, id, password, passwordcheck);
+        dispatch(alertSlice.actions.show(true));
     };
     return (
-        <Wrapper>
-            <SignUpform onSubmit={onSubmitHandler}>
-                <SignUpTitle>
-                    회원가입
-                </SignUpTitle>
-                <div>
-                    <IdBox
-                        type="text"
-                        name="name"
-                        placeholder="이름"
-                    />
-                </div>
-                <div>
-                    <IdBox
-                        type="text"
-                        name="id"
-                        placeholder="아이디"
-                    />
-                </div>
-                <div>
-                    <PwBox
-                        type="password"
-                        name="password"
-                        placeholder="비밀번호"
-                    />
-                </div>
-                <div>
-                    <PwBox
-                        type="password"
-                        name="passwordcheck"
-                        placeholder="비밀번호 확인"
-                    />
-                </div>
-                <CreateButton>완료</CreateButton>
-            </SignUpform>
-        </Wrapper>
+        <>
+            {alertShow
+                ?
+                <SignUpAlert />
+                :
+                <Wrapper>
+                    <SignUpform onSubmit={onSubmitHandler}>
+                        <SignUpTitle>
+                            회원가입
+                        </SignUpTitle>
+                        <div>
+                            <IdBox
+                                type="text"
+                                name="name"
+                                placeholder="이름"
+                            />
+                        </div>
+                        <div>
+                            <IdBox
+                                type="text"
+                                name="id"
+                                placeholder="아이디"
+                            />
+                        </div>
+                        <div>
+                            <PwBox
+                                type="password"
+                                name="password"
+                                placeholder="비밀번호"
+                            />
+                        </div>
+                        <div>
+                            <PwBox
+                                type="password"
+                                name="passwordcheck"
+                                placeholder="비밀번호 확인"
+                            />
+                        </div>
+                        <CreateButton>완료</CreateButton>
+                    </SignUpform>
+                </Wrapper>
+            }
+        </>
     )
 }
 

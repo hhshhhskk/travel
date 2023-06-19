@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import { createGlobalStyle } from 'styled-components';
 import { QueryClient, QueryClientProvider } from "react-query";
+import { Provider } from 'react-redux';
+import store from './store';
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -78,7 +80,9 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <GlobalStyle />
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </QueryClientProvider>
   </React.StrictMode>
 );
