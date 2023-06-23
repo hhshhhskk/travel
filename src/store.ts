@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import alertSlice from "./alertSlice";
+import signUpMassageSlice from "./signUpmassageSlice";
+import signUpStatusSlice from "./signUpStatusSlice";
 
 const store = configureStore({
     reducer: {
-        alert: alertSlice.reducer
+        signUpMassage: signUpMassageSlice.reducer,
+        signUpStatus: signUpStatusSlice.reducer
     }
 })
 

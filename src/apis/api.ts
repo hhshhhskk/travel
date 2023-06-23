@@ -56,7 +56,9 @@ export function SignUpApi(name: any, id: any, password: any, passwordcheck: any)
             }),
         }).then(async (result) => {
             const r = await result.json();
-            // console.log(r);
             alert(r.message);
+            if (r.status === "성공") {
+                window.location.href = '/';
+            }
     }).catch((error) => console.log(error))
 }
