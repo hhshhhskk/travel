@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { status } from "../loginStatusSlice";
+import { useEffect } from "react";
 
 const Wrapper = styled(motion.div)`
   display: flex;
@@ -85,10 +88,46 @@ const InfoBox = styled.div`
 `;
 
 function Login() {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const onSignUp = () => {
         navigate(`/SignUp`);
     };
+
+    useEffect(() => {
+        // 컴포넌트가 마운트될 때, 세션 스토리지에서 로그인 상태를 확인합니다.
+        const isLoggedIn = sessionStorage.getItem('loggedIn');
+        if (isLoggedIn) {
+            dispatch(status(true));
+        }
+    },);
+
+    const onSubmitHandler = (e: any) => {
+        e.preventDefault();
+        const id = e.target.id.value;
+        const password = e.target.password.value;
+        fetch(`http://localhost:8080/user/login`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id,
+                    password
+                }),
+            }).then(async (response) => {
+                const r = await response.json();
+                // console.log(r?.[0].name)
+                if (r.status === "실패") {
+                    alert(r.message);
+                } else {
+                    sessionStorage.setItem('nickname', r?.[0].name);
+                    window.location.href = '/';
+                }
+            })
+    };
+
     return (
         <Wrapper
             initial={{ y: -400 }}
@@ -99,17 +138,19 @@ function Login() {
                 },
             }}
         >
-            <Loginform>
+            <Loginform onSubmit={onSubmitHandler}>
                 <LoginTitle>Login</LoginTitle>
                 <div>
                     <IdBox
                         type="text"
+                        name="id"
                         placeholder="아이디"
                     />
                 </div>
                 <div>
                     <PwBox
                         type="password"
+                        name="password"
                         placeholder="비밀번호"
                     />
                 </div>

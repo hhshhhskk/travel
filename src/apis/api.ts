@@ -41,7 +41,7 @@ export function MoreImages(contentId: number) {
 }
 
 // 회원가입 
-export function SignUpApi(name: any, id: any, password: any, passwordcheck: any) {
+export function SignUpApi(name: string, id: string, password: number, passwordcheck: number) {
     return fetch(`http://localhost:8080/user/signup/insert`,
         {
             method: 'POST',
@@ -56,9 +56,13 @@ export function SignUpApi(name: any, id: any, password: any, passwordcheck: any)
             }),
         }).then(async (result) => {
             const r = await result.json();
-            alert(r.message);
+            
             if (r.status === "성공") {
-                window.location.href = '/';
+                alert(r.message);
+                window.location.href = '/Login';
+            } else {
+                alert(r.message);
             }
+
     }).catch((error) => console.log(error))
 }
