@@ -1,9 +1,6 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { status } from "../loginStatusSlice";
-import { useEffect } from "react";
 
 const Wrapper = styled(motion.div)`
   display: flex;
@@ -88,19 +85,10 @@ const InfoBox = styled.div`
 `;
 
 function Login() {
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const onSignUp = () => {
         navigate(`/SignUp`);
     };
-
-    useEffect(() => {
-        // 컴포넌트가 마운트될 때, 세션 스토리지에서 로그인 상태를 확인합니다.
-        const isLoggedIn = sessionStorage.getItem('loggedIn');
-        if (isLoggedIn) {
-            dispatch(status(true));
-        }
-    },);
 
     const onSubmitHandler = (e: any) => {
         e.preventDefault();
@@ -122,6 +110,7 @@ function Login() {
                 if (r.status === "실패") {
                     alert(r.message);
                 } else {
+                    sessionStorage.setItem("loggedIn", "true");
                     sessionStorage.setItem('nickname', r?.[0].name);
                     window.location.href = '/';
                 }

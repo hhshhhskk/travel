@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const Nav = styled.div`
   display: flex;
@@ -36,6 +37,19 @@ const Login = styled.div`
 }
 `;
 
+const Logined = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 33vh;
+  @media (max-width: 450px) {
+    width: 18vh;
+}
+`;
+
+const Logout = styled.div`
+  cursor: pointer;
+`;
+
 const Item = styled.div`
   margin-right: 20px;
   color: black;
@@ -47,7 +61,28 @@ const Item = styled.div`
     color: blue;
   }
 `;
+
+
 function Header() {
+  const [loggedIn, setLoggedIn] = useState<Boolean>(false);
+  const [nickName, setNickName] = useState<String | null>();
+
+  useEffect(() => {
+    // 컴포넌트가 마운트될 때, 세션 스토리지에서 로그인 상태를 확인합니다.
+    const isLoggedIn = sessionStorage.getItem('loggedIn');
+    const name = sessionStorage.getItem('nickname');
+    if (isLoggedIn === "true") {
+      setNickName(name);
+      setLoggedIn(true);
+    }
+  }, []);
+
+  const onClickedLogout = (e: any) => {
+    e.preventDefault();
+    sessionStorage.clear();
+    setLoggedIn(false);
+    window.location.href = '/';
+  };
 
   return (
     <Nav>
@@ -65,9 +100,24 @@ function Header() {
           </Item>
         </Items>
         <Login>
-          <Link to="/Login">
-            로그인
-          </Link>
+          {loggedIn
+            ?
+            <Logined>
+              <div>
+                {nickName} 님
+              </div>
+              <Link to="/Mypage">
+                마이페이지
+              </Link>
+              <Logout onClick={onClickedLogout}>
+                로그아웃
+              </Logout>
+            </Logined>
+            :
+            <Link to="/Login">
+              로그인
+            </Link>
+          }
         </Login>
       </Col>
     </Nav>
