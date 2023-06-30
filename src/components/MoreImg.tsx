@@ -51,6 +51,7 @@ const NextBtn = styled.div`
     margin-top: 100px;
     text-align: center;
     font-size: 35px;
+    cursor: pointer;
 
     @media (max-width: 450px) {
         width: 80px;

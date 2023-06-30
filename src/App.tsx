@@ -6,6 +6,7 @@ import AreaTourDetail from './pages/AreaTourDetail';
 import "./App.css";
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
+import Mypage from './pages/Mypage';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/AIchat" element={<Chat />}></Route>
         <Route path="/Login" element={<Login />}></Route>
+        <Route path="/Mypage" element={<Mypage />}></Route>
         <Route path="/SignUp" element={<SignUp />}></Route>
         <Route path="/Detail" element={<AreaTourDetail />}></Route>
         <Route path="/" element={<Main />}>

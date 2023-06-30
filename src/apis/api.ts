@@ -66,3 +66,46 @@ export function SignUpApi(name: string, id: string, password: number, passwordch
 
     }).catch((error) => console.log(error))
 }
+
+// 로그인
+export function LoginApi(id: string, password: number) {
+    return fetch(`http://localhost:8080/user/login`,
+    {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            id,
+            password
+        }),
+    }).then(async (response) => {
+        const r = await response.json();
+        // console.log(r?.[0].name)
+        if (r.status === "실패") {
+            alert(r.message);
+        } else {
+            sessionStorage.setItem("loggedIn", "true");
+            sessionStorage.setItem('nickname', r?.[0].name);
+            sessionStorage.setItem('id', id);
+            window.location.href = '/';
+        }
+    })
+}
+
+// 회원 정보 API
+export function UserInfoApi(id: string) {
+    return fetch(`http://localhost:8080/user/info`,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                id,
+            }),
+        }).then(async (result) => {
+            const r = await result.json();
+            console.log(r);
+            })
+}

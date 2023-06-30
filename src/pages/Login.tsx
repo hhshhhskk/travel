@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { LoginApi } from "../apis/api";
 
 const Wrapper = styled(motion.div)`
   display: flex;
@@ -90,31 +91,11 @@ function Login() {
         navigate(`/SignUp`);
     };
 
-    const onSubmitHandler = (e: any) => {
+    const onSubmitHandler = async (e: any) => {
         e.preventDefault();
         const id = e.target.id.value;
         const password = e.target.password.value;
-        fetch(`http://localhost:8080/user/login`,
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    id,
-                    password
-                }),
-            }).then(async (response) => {
-                const r = await response.json();
-                // console.log(r?.[0].name)
-                if (r.status === "실패") {
-                    alert(r.message);
-                } else {
-                    sessionStorage.setItem("loggedIn", "true");
-                    sessionStorage.setItem('nickname', r?.[0].name);
-                    window.location.href = '/';
-                }
-            })
+        await LoginApi(id, password);
     };
 
     return (
