@@ -42,7 +42,7 @@ export function MoreImages(contentId: number) {
 
 // 회원가입 
 export function SignUpApi(name: string, id: string, password: number, passwordcheck: number) {
-    return fetch(`http://localhost:8080/user/signup/insert`,
+    return fetch(`http://localhost:8080/api/signup`,
         {
             method: 'POST',
             headers: {
@@ -69,7 +69,7 @@ export function SignUpApi(name: string, id: string, password: number, passwordch
 
 // 로그인
 export function LoginApi(id: string, password: number) {
-    return fetch(`http://localhost:8080/user/login`,
+    return fetch(`http://localhost:8080/api/login`,
     {
         method: 'POST',
         headers: {
@@ -95,7 +95,7 @@ export function LoginApi(id: string, password: number) {
 
 // 회원 정보 API
 export function UserInfoApi(id: string) {
-    return fetch(`http://localhost:8080/user/info`,
+    return fetch(`http://localhost:8080/api/info`,
         {
             method: 'POST',
             headers: {
