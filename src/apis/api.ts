@@ -1,8 +1,8 @@
-import { BASE_PATH, API_KEY, TYPE, DATA_NUMBER } from "./const";
+import { BASE_PATH, GPT_URL, API_KEY, TYPE, DATA_NUMBER } from "./const";
 
 // AI
 export function aiChat(question: any) {
-    return fetch(`http://20.232.117.252/GPT?q=${question}`)
+    return fetch(`${GPT_URL}/GPT?q=${question}`)
         .then(
             (response) => response.json()
     )
