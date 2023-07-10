@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const Nav = styled.div`
@@ -46,6 +46,9 @@ const Logined = styled.div`
 }
 `;
 
+const Mypage = styled.div`
+  cursor: pointer;
+`
 const Logout = styled.div`
   cursor: pointer;
 `;
@@ -66,16 +69,22 @@ const Item = styled.div`
 function Header() {
   const [loggedIn, setLoggedIn] = useState<Boolean>(false);
   const [nickName, setNickName] = useState<String | null>();
-
+  const navigate = useNavigate();
+  const userId = sessionStorage.getItem('id');
   useEffect(() => {
     // 컴포넌트가 마운트될 때, 세션 스토리지에서 로그인 상태를 확인합니다.
     const isLoggedIn = sessionStorage.getItem('loggedIn');
     const name = sessionStorage.getItem('nickname');
+
     if (isLoggedIn === "true") {
       setNickName(name);
       setLoggedIn(true);
     }
   }, []);
+
+  const onClickedMyPage = () => {
+    navigate(`/mypage?id=${userId}`);
+  };
 
   const onClickedLogout = (e: any) => {
     e.preventDefault();
@@ -106,9 +115,9 @@ function Header() {
               <div>
                 {nickName} 님
               </div>
-              <Link to="/Mypage">
+              <Mypage onClick={onClickedMyPage}>
                 마이페이지
-              </Link>
+              </Mypage>
               <Logout onClick={onClickedLogout}>
                 로그아웃
               </Logout>

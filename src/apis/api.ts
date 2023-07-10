@@ -109,3 +109,10 @@ export function UserInfoApi(id: string) {
             console.log(r);
             })
 }
+
+// 마이페이지 API
+export function MyPageApi(id: string) {
+    return fetch(`http://localhost:8080/api/mypage/${id}`).then(
+            (response) => response.json()
+    )
+}
