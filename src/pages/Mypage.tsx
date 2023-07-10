@@ -66,7 +66,7 @@ const ContentAddr = styled.table`
 function Mypage() {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
-    const contentId = String(searchParams.get("id"));
+    const contentId = Number(searchParams.get("id"));
     const { isLoading, data: MyPageData } = useQuery(["MyPage"], async () => {
         const data = await MyPageApi(contentId);
         return data

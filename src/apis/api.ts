@@ -40,6 +40,29 @@ export function MoreImages(contentId: number) {
     )
 }
 
+export function WishListApi(id: number, contentid: number) {
+    return fetch(`http://localhost:8080/api/wishlist/${id}/${contentid}`)
+        .then(
+            (response) => response.json()
+    )
+}
+
+export async function WishListInsertApi(id: number, contentid: number, title: string) {
+     await fetch(`http://localhost:8080/api/mypage/insert`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            id,
+            contentid,
+            title,
+        }),
+    }).then(
+            (response) => response.json()
+    )
+}
+
 // 회원가입 
 export function SignUpApi(name: string, id: string, password: number, passwordcheck: number) {
     return fetch(`http://localhost:8080/api/signup`,
@@ -111,7 +134,7 @@ export function UserInfoApi(id: string) {
 }
 
 // 마이페이지 API
-export function MyPageApi(id: string) {
+export function MyPageApi(id: number) {
     return fetch(`http://localhost:8080/api/mypage/${id}`).then(
             (response) => response.json()
     )
