@@ -59,8 +59,29 @@ export async function WishListInsertApi(id: number, contentid: number, title: st
             title,
         }),
     }).then(
-            (response) => response.json()
+        async (response) => {
+            const r = await response.json();
+            console.log(r);
+        }
     )
+}
+
+export async function WishListDeleteApi(id: number, contentid: number) {
+    await fetch(`http://localhost:8080/api/mypage/delete`, {
+       method: 'DELETE',
+       headers: {
+           'Content-Type': 'application/json',
+       },
+       body: JSON.stringify({
+           id,
+           contentid,
+       }),
+   }).then(
+       async (response) => {
+        const r = await response.json();
+        console.log(r);
+       }
+   )
 }
 
 // 회원가입 

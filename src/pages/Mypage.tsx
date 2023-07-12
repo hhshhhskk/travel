@@ -62,17 +62,28 @@ const ContentAddr = styled.table`
     }
 `;
 
+const WishListDiv = styled.div`
+    gap: 5px;
+`
+
+interface Idata {
+    status?: string,
+    id?: string,
+    wishlist_id?: string,
+    title?: string,
+}
+
 
 function Mypage() {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const contentId = Number(searchParams.get("id"));
-    const { isLoading, data: MyPageData } = useQuery(["MyPage"], async () => {
+    const { isLoading, data: MyPageData } = useQuery<Idata[]>(["MyPage"], async () => {
         const data = await MyPageApi(contentId);
         return data
     }
     );
-    console.log(isLoading, MyPageData?.status)
+    console.log(isLoading, MyPageData)
 
     const id = sessionStorage.getItem('id');
     const nickname = sessionStorage.getItem('nickname');
@@ -96,7 +107,7 @@ function Mypage() {
                     :
                     <>
                         <Title>마이페이지</Title>
-                        {MyPageData?.status === '실패'
+                        {MyPageData?.[0].status === '실패'
                             ?
                             <ContentAddr>
                                 <thead>
@@ -114,27 +125,39 @@ function Mypage() {
                                         <th colSpan={2}>찜 목록</th>
                                     </tr>
                                     <tr>
-                                        <td colSpan={2}>{MyPageData?.message}</td>
+                                        <td colSpan={2}>
+                                            찜목록이 없습니다.
+                                        </td>
                                     </tr>
                                 </tbody>
                             </ContentAddr>
                             :
-                            <table>
+                            <ContentAddr>
                                 <thead>
                                     <tr>
                                         <th>아이디</th>
-                                        <th>{MyPageData?.[0]?.id}</th>
+                                        <td>{id}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>닉네임</th>
+                                        <td>{nickname}</td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>주소</td>
-                                        <td>
-                                            {MyPageData?.[0]?.id}
+                                        <th colSpan={2}>찜 목록</th>
+                                    </tr>
+                                    <tr>
+                                        <td colSpan={2}>
+                                            {MyPageData?.map((data: Idata, i: number) => (
+                                                <WishListDiv key={i}>
+                                                    {data?.title}
+                                                </WishListDiv>
+                                            ))}
                                         </td>
                                     </tr>
                                 </tbody>
-                            </table>
+                            </ContentAddr>
                         }
 
                     </>
