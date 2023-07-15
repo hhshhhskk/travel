@@ -1,5 +1,4 @@
-// export const BASE_PATH = process.env.REACT_APP_BASE_URL;
-export const BASE_PATH = "https://apis.data.go.kr/B551011/KorService1";
+export const BASE_PATH = process.env.REACT_APP_BASE_URL;
 
 export const API_KEY = process.env.REACT_APP_OPENAPI_API_KEY;
 

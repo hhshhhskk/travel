@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { useEffect } from "react";
 import { useQuery } from "react-query";
-import { MyPageApi } from "../apis/api";
-import { useLocation } from "react-router-dom";
+import { MyPageApi, SignOutApi } from "../apis/api";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
   background: white;
@@ -64,6 +64,25 @@ const ContentAddr = styled.table`
 
 const WishListDiv = styled.div`
     gap: 5px;
+    cursor: pointer;
+    &:hover {
+    color: blue;
+  }
+`
+
+const LeaveBox = styled.div`
+    display: flex;
+    width: 60%;
+    height: 80px;
+    margin-top: 5vh;
+    border-radius: 25px;
+    background-color: #eb5454;
+    color: #f8f8f8e9;
+    font-size: 44px;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
 `
 
 interface Idata {
@@ -75,6 +94,7 @@ interface Idata {
 
 
 function Mypage() {
+    const navigate = useNavigate();
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const contentId = Number(searchParams.get("id"));
@@ -83,9 +103,9 @@ function Mypage() {
         return data
     }
     );
-    console.log(isLoading, MyPageData)
+    // console.log(isLoading, MyPageData)
 
-    const id = sessionStorage.getItem('id');
+    const id = String(sessionStorage.getItem('id'))
     const nickname = sessionStorage.getItem('nickname');
 
     useEffect(() => {
@@ -95,6 +115,17 @@ function Mypage() {
             window.location.href = '/';
         }
     })
+
+    const onClicked = async (data: string | undefined) => {
+        navigate(`/Detail?id=${data}`);
+    };
+
+    const signOutOnClicked = async () => {
+        if (window.confirm("정말로 회원을 탈퇴 하시겠습니까?")) {
+            SignOutApi(id);
+        }
+    };
+
     return (
         <Wrapper>
             <Space>
@@ -150,7 +181,10 @@ function Mypage() {
                                     <tr>
                                         <td colSpan={2}>
                                             {MyPageData?.map((data: Idata, i: number) => (
-                                                <WishListDiv key={i}>
+                                                <WishListDiv
+                                                    key={i}
+                                                    onClick={() => onClicked(data.wishlist_id)}
+                                                >
                                                     {data?.title}
                                                 </WishListDiv>
                                             ))}
@@ -159,7 +193,9 @@ function Mypage() {
                                 </tbody>
                             </ContentAddr>
                         }
-
+                        <LeaveBox onClick={signOutOnClicked}>
+                            <div>회 원 탈 퇴</div>
+                        </LeaveBox>
                     </>
                 }
             </Space>

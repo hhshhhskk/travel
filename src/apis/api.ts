@@ -111,6 +111,26 @@ export function SignUpApi(name: string, id: string, password: number, passwordch
     }).catch((error) => console.log(error))
 }
 
+// 회원탈퇴
+export function SignOutApi(id: string) {
+    return fetch(`http://localhost:8080/api/signout/delete`,
+        {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                id,
+            }),
+        }).then(async (result) => {
+            const r = await result.json();
+            alert(r.message);
+            sessionStorage.clear()
+            window.location.href = '/';
+
+    }).catch((error) => console.log(error))
+}
+
 // 로그인
 export function LoginApi(id: string, password: number) {
     return fetch(`http://localhost:8080/api/login`,

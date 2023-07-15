@@ -1,46 +1,100 @@
-# Getting Started with Create React App
+# Travel
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+  <br>
+  <!-- <img src="/public/kwakGG-main.png"> -->
+  <br>
+</p>
 
-## Available Scripts
+# 목차
+1. 프로젝트 소개 
+2. 개발환경
+3. 기술 스택
+4. 구현 기능
+5. 배운점 & 아쉬운 점
+6. 추가할 예정
 
-In the project directory, you can run:
+## 프로젝트 소개
+<!-- [Kwak.gq 사이트](https://kwak.gq/) -->
 
-### `npm start`
+<p align="justify">
+프로젝트 개요/동기
+</p>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<p align="justify">
+제가 네이버보다 많이 들어간 전전 검색 사이트를 내가 한번 만들어 보면 어떨까 하는 생각에 시작하게 되었습니다.
+이미 수많은 사이트들이 있지만 저는 필요 기능만 더 직관적으로 보이게 만들어보았습니다.
+</p>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<br>
 
-### `npm test`
+## 개발환경
+- macOS
+- VsCode
+- GitHub
+- Netlify
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<br>
 
-### `npm run build`
+## 기술 스택
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+|  Html   |   Css   | JavaScript | TypeScript |  React   |
+| :-----: | :-----: | :--------: | :--------: | :------: |
+| ![html] | ![css]  |   ![js]    |    ![ts]   | ![react] |
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<br>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## :computer: 구현 기능
+<details markdown="1">
+<summary>펼치기</summary>
 
-### `npm run eject`
+* **Main Page**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![메인로고](https://user-images.githubusercontent.com/67895755/202905191-cb9e2075-cd84-4613-b19f-bcc9700b1943.gif)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- framer-motion 라이브러리를 사용하여 메인 페이지의 로고에 애니메이션을 추가
+- 라이엇 API를 useQuery를 사용하여 로테이션 목록(16개)을 불러와 화면에 8개씩 보이도록 하고 버튼과 useState를 사용하여 배열 값을 변경해 로테이션 목록을 나누어서 출력(로테이션.gif는 Search2)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* **Search1 Page**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![전적검색](https://user-images.githubusercontent.com/67895755/202905199-6636c41d-deaf-46d1-bfc0-8f00931274ea.gif)
 
-## Learn More
+- framer-motion 라이브러리를 사용하여 소환사정보 박스에 애니메이션을 추가
+- useNavigate를 사용하여 URL에 소환사이름을 보냄
+- useLocation를 사용하여 URL에 소환사이름을 받아옴
+- useRecoil을 사용하여 소환사이름을 저장함
+- useQuery를 사용하여 소환사정보를 가져옴
+- 박스를 컴포넌트화 하여 관리
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* **Search2 Page**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![최근전적,로테이션](https://user-images.githubusercontent.com/67895755/202905221-ecca16a3-bdef-4864-a273-c72ccf7e0554.gif)
+
+* **Login/SignUp Page**
+
+![로그인](https://user-images.githubusercontent.com/67895755/202905234-7609650c-9fd5-447d-bda8-1a5b7577b44c.gif)
+
+
+</details>
+<br>
+
+## 배운 점 & 아쉬운 점
+
+<p align="justify">
+일단 부딪혀보자는 마음으로 큰 탈 없이 만들어 보았는데 쉽지 않았지만 각종 에러에 부딪히며 수많은 검색으로 리액트 훅의 다양한 기능들과 JS, Css의 제대로 이해하지 못한 부분을 배웠습니다. 그래도 아직까지 반응형 디자인을 제대로 설계하지 못한 것이 아쉬운 부분인 것 같습니다. 
+</p>
+
+<br>
+
+## 추가할 예정
+- 반응형 디자인 최적화
+- 로그인/회원가입 서버연결
+- 게시판 추가
+- 서버전체 랭킹
+
+<!-- Stack Icon Refernces -->
+[html]: src/assets/images/stack/html.svg
+[css]: src/assets/images/stack/css.svg
+[js]: src/assets/images/stack/javascript.svg
+[ts]: src/assets/images/stack/typescript.svg
+[react]: src/assets/images/stack/react.svg
