@@ -181,21 +181,28 @@ function AreaTourDetail() {
     // console.log(isLoading, detailData?.[0]);
     const [data, setData] = useState("공통정보");
     const [star, setStar] = useState<boolean>();
-
     // 해당 아이디의 찜목록에 있는지 확인
     const { data: WishListData, refetch } = useQuery(["WishList"], async () => {
+        // console.log("쿼리실행됨", id);
         const data = await WishListApi(id, contentId);
-        // console.log(data);
         if (data.status === "실패") {
             setStar(true);
         }
         return data.status;
-    }, {
-        enabled: id !== 0,
-    });
+    },
+        {
+            enabled: id !== 0,
+        });
 
     useEffect(() => {
-        refetch();
+        if (id !== 0) {
+            // id가 0이 아닌 경우에만 쿼리 다시 실행
+            refetch();
+        }
+
+        if (id === 0) {
+            setStar(true);
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [star])
     const onClickedStar = (e: any) => {
