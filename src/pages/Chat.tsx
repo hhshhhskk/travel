@@ -11,10 +11,62 @@ const Wrapper = styled.div`
 `;
 
 const ChatBox = styled.div`
-  width: 300px;
+  width: 90%; /* Increased width to 400px */
+  height: 70%;
   border: 1px solid #ccc;
   padding: 10px;
+  background-color: #f0f0f0;
 `;
+
+const MessageContainer = styled.div`
+  margin-bottom: 10px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+
+const UserMessage = styled.div`
+  color: #007bff;
+  font-size: 33px;
+  font-weight: bold;
+`;
+
+const AIMessage = styled.div`
+  color: #28a745;
+  font-size: 33px;
+  font-weight: bold;
+`;
+
+const FormBox = styled.form`
+  width:90%;
+`
+
+const MessageInput = styled.input`
+  width: 80%;
+  height: 150px;
+  padding: 8px;
+  font-size: 33px;
+  margin-top: 10px;
+  border: 1px solid rgb(209, 215, 237);
+  text-align: center;
+  :focus{
+     outline: none;
+  }
+`;
+
+const SendButton = styled.button`
+  width: 20%;
+  height: 150px;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: rgb(209, 215, 237);
+  font-size: 33px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+`;
+
+
 
 const Chat: React.FC = () => {
   const [userInput, setUserInput] = useState('');
@@ -23,37 +75,42 @@ const Chat: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch('http://localhost:8080/api/chatgpt', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ userInput }),
-      });
+    // try {
+    //   const response = await fetch('http://localhost:8080/api/chatgpt', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({ userInput }),
+    //   });
 
-      const data = await response.json();
-      setChatHistory([...chatHistory, { user: 'User', message: userInput }, { user: 'AI', message: data.ai }]);
-      setUserInput('');
-    } catch (error) {
-      console.error('Error fetching AI response:', error);
-    }
+    //   const data = await response.json();
+    //   setChatHistory([...chatHistory, { user: 'User', message: userInput }, { user: 'AI', message: data.ai }]);
+    //   setUserInput('');
+    // } catch (error) {
+    //   console.error('Error fetching AI response:', error);
+    // }
+    setChatHistory([...chatHistory, { user: 'User', message: userInput }, { user: 'AI', message: "대답" }]);
+    setUserInput('');
   };
 
   return (
     <Wrapper>
       <ChatBox>
         {chatHistory.map((chat, index) => (
-          <div key={index}>
-            <strong>{chat.user}: </strong>
-            {chat.message}
-          </div>
+          <MessageContainer key={index}>
+            {chat.user === 'User' ? (
+              <UserMessage>{chat.message}</UserMessage>
+            ) : (
+              <AIMessage>{chat.message}</AIMessage>
+            )}
+          </MessageContainer>
         ))}
       </ChatBox>
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={userInput} onChange={(e) => setUserInput(e.target.value)} />
-        <button type="submit">전송</button>
-      </form>
+      <FormBox onSubmit={handleSubmit}>
+        <MessageInput type="text" value={userInput} placeholder='무엇을 도와드릴까요?' onChange={(e) => setUserInput(e.target.value)} />
+        <SendButton type="submit">전송</SendButton>
+      </FormBox>
     </Wrapper>
   );
 };
