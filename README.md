@@ -15,7 +15,8 @@
 6. 추가할 예정
 
 ## 프로젝트 소개
-<!-- [여행지 추천 사이트](https://kms-travel.netlify.app/) -->
+[여행지 추천 사이트](https://kms-travel.netlify.app/)
+- 서버가 닫혀있습니다.
 
 <p align="justify">
 프로젝트 개요/동기

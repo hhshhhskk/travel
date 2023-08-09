@@ -74,24 +74,29 @@ const Chat: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const prompt = userInput;
+    const max_tokens = 120;
+    const n = 1;
+    try {
+      const response = await fetch('http://localhost:8080/api/chatgpt', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          prompt,
+          max_tokens,
+          n
+        }),
+      });
 
-    // try {
-    //   const response = await fetch('http://localhost:8080/api/chatgpt', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({ userInput }),
-    //   });
-
-    //   const data = await response.json();
-    //   setChatHistory([...chatHistory, { user: 'User', message: userInput }, { user: 'AI', message: data.ai }]);
-    //   setUserInput('');
-    // } catch (error) {
-    //   console.error('Error fetching AI response:', error);
-    // }
-    setChatHistory([...chatHistory, { user: 'User', message: userInput }, { user: 'AI', message: "대답" }]);
-    setUserInput('');
+      const data = await response.json();
+      // console.log(data.generations[0].text);
+      setChatHistory([...chatHistory, { user: 'User', message: userInput }, { user: 'AI', message: data.generations[0].text }]);
+      setUserInput('');
+    } catch (error) {
+      console.error('Error fetching AI response:', error);
+    }
   };
 
   return (
