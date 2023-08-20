@@ -46,9 +46,6 @@ const Item = styled.div`
   display: flex;
   width: 30%;
   justify-content: space-around;
-  &:hover {
-    color: blue;
-  }
 `;
 
 const Logined = styled.div`

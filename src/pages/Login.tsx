@@ -31,7 +31,7 @@ const Loginform = styled.form`
 const LoginTitle = styled.div`
   font-size: 66px;
   padding: 10%;
-  color: skyblue;
+  color: #f58d94;
 
 `;
 

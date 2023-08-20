@@ -11,8 +11,9 @@ const Wrapper = styled.div`
 `;
 
 const ChatBox = styled.div`
-  width: 90%; /* Increased width to 400px */
+  width: 90%;
   height: 70%;
+  margin-top: 10%;
   border: 1px solid #ccc;
   padding: 10px;
   background-color: #f0f0f0;
@@ -59,7 +60,7 @@ const SendButton = styled.button`
   height: 150px;
   margin-top: 10px;
   padding: 8px 16px;
-  background-color: rgb(209, 215, 237);
+  background-color: #f1444f;
   font-size: 33px;
   color: #fff;
   border: none;

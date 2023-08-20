@@ -42,7 +42,7 @@ const TourName = styled.div`
     white-space: nowrap;
     text-align: center;
     color: white;
-    background-color: skyblue;
+    background-color: #f7323f;
 `;
 
 interface Idata {
