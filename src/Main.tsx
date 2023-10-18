@@ -35,11 +35,11 @@ const Category = styled.div`
 const CategoryItems = styled.div`
     box-shadow: rgba(0, 0, 0, 1) 0px 0px 5px;
     background-color: rgb(255, 255, 255);
-    border-radius: 50px;
-    width: 7%;
+    border-radius: 25px;
+    width: 5%;
     height: 90%;
-    color: ${(props) => props.className === props.color ? "red" : "black"};
-    font-size: 2.1vw;
+    color: ${(props) => props.className === props.color ? "black" : "rgba(0,0,0,0.56)"};
+    font-size: 1.5vw;
     display : flex;
     justify-content : center;
     align-items : center;
@@ -51,7 +51,7 @@ const CategoryItems = styled.div`
 
     cursor: pointer;
     :hover {
-    color: blue;
+    color: black;
   };
 `;
 
@@ -64,8 +64,7 @@ const TourPageDiv = styled.div`
 `;
 
 const TourPageNumBtn = styled.div`
-    border-width: 1px;
-    border: solid;
+    border: 1px solid;
     border-color: black;
     width: 30px;
     height: 30px;
@@ -80,8 +79,7 @@ const TourPageNumBtn = styled.div`
 `;
 
 const TourPageUpDownBtn = styled.div`
-    border-width: 1px;
-    border: solid;
+    border: 1px solid;
     border-color: black;
     width: 30px;
     height: 30px;

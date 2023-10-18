@@ -11,6 +11,7 @@ const HeaderDiv = styled.div<Scrolledprops>`
   top: 0;
   font-size: 44px;
   padding: 20px 60px;
+  height: 72px;
   background-color: ${props => (props.scrolled ? '#ffffff' : '#f7323f')};
   box-shadow: ${props => (props.scrolled ? '0px 2px 5px rgba(0, 0, 0, 0.2)' : 'none')};
   transition: background-color 0.3s ease, color 0.3s ease;

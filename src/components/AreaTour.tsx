@@ -21,9 +21,8 @@ const TourItems = styled.div`
 const TourItem = styled.div`
     display: flex;
     flex-direction: column;
-    border-width: 1px;
-    border: solid;
-    border-color: black;
+    border: 1px solid;
+    border-color: rgba(0,0,0,0.56);
     cursor: pointer;
 `;
 
@@ -41,8 +40,8 @@ const TourName = styled.div`
     text-overflow: ellipsis;
     white-space: nowrap;
     text-align: center;
-    color: white;
-    background-color: #f7323f;
+    color: rgba(0,0,0,0.56);
+    background-color: white;
 `;
 
 interface Idata {
